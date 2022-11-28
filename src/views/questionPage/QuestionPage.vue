@@ -1,9 +1,9 @@
 <template>
-  <router-view/>
+  <div>我是问题页</div>
 </template>
 
 <script setup>
 </script>
 
-<style lang="less">
+<style scoped>
 </style>
