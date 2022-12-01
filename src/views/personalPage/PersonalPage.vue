@@ -99,6 +99,7 @@ const loadUserInfo = async () => {
     console.log(data)
   } catch {
     Toast('获取用户信息失败')
+    console.log('shibai')
   }
 }
 if (store.state.userToken) {

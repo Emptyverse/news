@@ -1,6 +1,7 @@
 <template>
   <div class="home-container">
     <van-nav-bar
+      fixed
       class="all-nav-bar"
       title="首页"
     >
@@ -11,7 +12,7 @@
         :title="channel.name"
         :key="channel.id"
       >
-        <!-- {{ channel.name }} -->
+        <ArticlePage :channel="channel"/>
       </van-tab>
       <template v-slot:nav-right>
           <div class="stone"></div>
@@ -25,6 +26,7 @@
 import { ref } from 'vue'
 import { getUserChannels } from '@/api/userLogin'
 import { Toast } from 'vant'
+import ArticlePage from '@/views/articlePage/ArticlePage.vue'
 const channelList = ref([])
 const active = ref(2)
 async function loadChannels () {
@@ -40,12 +42,24 @@ loadChannels()
 
 <style scoped lang="less">
 .home-container {
+  padding-top: 87px;
+  margin-bottom: 100px;
   :deep(.channel-tabs) {
-    border-bottom: 1px solid rgb(218, 218, 218);
+    .van-tabs__nav {
+      position: fixed;
+      top: 92px;
+      z-index: 1;
+      left: 0;
+      right: 0;
+      height: 82px;
+    }
     .van-tab {
       min-width: 200px;
       height: 82px;
       border-right: 1px solid #edeff3;
+      .van-tabs__text {
+        font-size: 30px;
+      }
     }
     .van-tabs__line {
       background-color: orange;
