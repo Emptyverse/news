@@ -2,14 +2,19 @@
   <div>
     <van-pull-refresh v-model="refreshing" success-text="刷新成功" @refresh="onRefresh">
       <van-list
-      v-model:loading="loading"
-      :finished="finished"
-      :error="error"
-      finished-text="没有更多了"
-      error-text="请求失败，点击重新加载"
-      @load="onLoad">
-      <van-cell v-for="item in list" :key="item.art_id" :title="item.title" />
-    </van-list>
+        v-model:loading="loading"
+        :finished="finished"
+        :error="error"
+        finished-text="没有更多了"
+        error-text="请求失败，点击重新加载"
+        @load="onLoad">
+        <ArticleItem
+          v-for="item in list"
+          :key=item.art_id
+          :articleItem="item">
+        </ArticleItem>
+        <!-- <van-cell v-for="item in list" :key="item.art_id" :title="item.title" /> -->
+      </van-list>
     </van-pull-refresh>
   </div>
 </template>
@@ -17,6 +22,7 @@
 <script setup>
 import { ref } from 'vue'
 import { getArticleList } from '@/api/article'
+import ArticleItem from '@/components/articleItem/ArticleItem.vue'
 const list = ref([])
 const loading = ref(false)
 const finished = ref(false)
